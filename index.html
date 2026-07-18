@@ -1,0 +1,661 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kandeep</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts for Japanese touch -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fcf9f5;  /* soft washi paper */
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+      color: #2c2b2a;
+    }
+
+    /* main card – light Japanese elegance */
+    .profile-card {
+      max-width: 1200px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 48px 48px 32px 32px;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 8px 24px -6px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+      border: 1px solid #f0ebe4;
+      transition: all 0.2s ease;
+    }
+
+    /* BANNER — 和風 (wafū) light */
+    .banner {
+      background: linear-gradient(145deg, #f2ede6 0%, #e8e1d8 100%);
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      position: relative;
+      min-height: 160px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e6dfd7;
+    }
+
+    .banner::after {
+      content: "◈  IT  CONSULTING  ◈";
+      position: absolute;
+      bottom: 14px;
+      right: 32px;
+      font-size: 0.75rem;
+      letter-spacing: 6px;
+      color: rgba(120, 110, 100, 0.15);
+      font-weight: 300;
+      font-family: 'Zen Old Mincho', 'Times New Roman', serif;
+    }
+
+    .banner-left {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    /* profile picture – with subtle frame */
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #e8e0d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #5a524a;
+      border: 3px solid #ffffff;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+      transition: 0.2s;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-pic i {
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.04));
+    }
+
+    .banner-title {
+      color: #3d3a35;
+      letter-spacing: 0.3px;
+    }
+
+    .banner-title h1 {
+      font-weight: 400;
+      font-size: 2.2rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: 1px;
+      font-family: 'Zen Old Mincho', 'Times New Roman', serif;
+    }
+
+    .banner-title .subhead {
+      font-weight: 300;
+      color: #6f665d;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      border-left: 2px solid #b8a697;
+      padding-left: 14px;
+    }
+
+    .banner-tag {
+      background: rgba(80, 70, 60, 0.04);
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      color: #4f4a44;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      border: 1px solid #e1d8ce;
+      backdrop-filter: blur(2px);
+      align-self: flex-start;
+      margin-top: 0.3rem;
+    }
+
+    .banner-tag i {
+      color: #9e8b7a;
+    }
+
+    /* main content – grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      background: #fcfaf7;
+    }
+
+    /* left column */
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* right column */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* section styling – 和風 card */
+    .section {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+      border: 1px solid #ede8e1;
+      transition: 0.15s;
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #7b6e60;
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid #e4dcd2;
+      padding-bottom: 0.6rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: #9e8b7a;
+      font-size: 1rem;
+    }
+
+    /* skills chips */
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+    }
+
+    .skill-item {
+      background: #f3efe9;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #2f3e40;
+      letter-spacing: 0.3px;
+      border: 1px solid #e2d8cd;
+      transition: 0.1s;
+      font-weight: 400;
+    }
+
+    .skill-item i {
+      margin-right: 6px;
+      color: #7f6e5c;
+      font-size: 0.8rem;
+    }
+
+    /* certifications list */
+    .cert-list {
+      list-style: none;
+    }
+
+    .cert-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #e8dfd5;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .cert-list li:last-child {
+      border-bottom: none;
+    }
+
+    .cert-list i {
+      color: #b7a089;
+      width: 20px;
+      font-size: 1rem;
+    }
+
+    .cert-badge {
+      background: #e3dad0;
+      color: #2f3e40;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      letter-spacing: 0.5px;
+      margin-left: auto;
+      background: #eae2d8;
+    }
+
+    /* services – cards */
+    .service-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 0.6rem;
+    }
+
+    .service-item {
+      background: #f6f2ec;
+      border-radius: 50px;
+      padding: 0.45rem 1.3rem;
+      font-size: 0.9rem;
+      border: 1px solid #e6dbd0;
+      color: #2f3e40;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.1s;
+    }
+
+    .service-item i {
+      color: #8f7b68;
+      font-size: 0.8rem;
+    }
+
+    /* clients – elegant list */
+    .client-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .client-entry {
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 0.8rem;
+      background: #f9f6f1;
+      border-radius: 60px;
+      border-left: 4px solid #b8a697;
+      transition: 0.1s;
+      flex-wrap: wrap;
+    }
+
+    .client-entry i {
+      color: #7f6e5c;
+      width: 28px;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .client-name {
+      font-weight: 450;
+      margin-right: 1.2rem;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .client-desc {
+      font-size: 0.8rem;
+      color: #6f6254;
+      margin-left: auto;
+      background: #ede6dc;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    /* divider */
+    .fine-divider {
+      width: 40px;
+      height: 2px;
+      background: #d6cbbc;
+      margin: 0.3rem 0 0.8rem 0;
+    }
+
+    /* footer */
+    .card-footer {
+      padding: 0.5rem 2.5rem 1.8rem 2.5rem;
+      background: #fcfaf7;
+      border-top: 1px solid #e8e0d6;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: #9e8f80;
+      letter-spacing: 0.6px;
+    }
+
+    .card-footer span i {
+      margin-right: 6px;
+      color: #b5a697;
+    }
+
+    .card-footer .jp-signature {
+      font-family: 'Zen Old Mincho', 'Times New Roman', serif;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 900px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+      }
+
+      .banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 1.8rem 1.5rem;
+      }
+
+      .banner-left {
+        width: 100%;
+      }
+
+      .profile-pic {
+        width: 80px;
+        height: 80px;
+        font-size: 2.4rem;
+      }
+
+      .banner-title h1 {
+        font-size: 1.8rem;
+      }
+
+      .banner-tag {
+        align-self: flex-start;
+        margin-top: 0.2rem;
+      }
+
+      .banner::after {
+        display: none;
+      }
+
+      .client-entry {
+        border-radius: 20px;
+        padding: 0.6rem 1rem;
+      }
+      .client-desc {
+        margin-left: 0;
+        margin-top: 0.2rem;
+        width: 100%;
+        text-align: left;
+        padding: 0.2rem 0.8rem;
+      }
+      .card-footer {
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .profile-card {
+        border-radius: 28px;
+      }
+      .content-grid {
+        padding: 1.5rem 1rem;
+      }
+      .section {
+        padding: 1.2rem 1rem;
+      }
+      .banner-title h1 {
+        font-size: 1.5rem;
+      }
+      .profile-pic {
+        width: 68px;
+        height: 68px;
+        font-size: 2rem;
+      }
+      .service-item {
+        padding: 0.3rem 1rem;
+        font-size: 0.8rem;
+      }
+      .skill-item {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.9rem;
+      }
+      .banner {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+
+    /* subtle japanese accent */
+    .jp-accent {
+      font-family: 'Zen Old Mincho', 'Times New Roman', serif;
+      font-weight: 300;
+    }
+
+    .fa-regular, .fas, .far {
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+<div class="profile-card">
+
+  <!-- BANNER with profile picture -->
+  <div class="banner">
+    <div class="banner-left">
+      <div class="profile-pic" id="profilePicContainer">
+        <!-- default icon as fallback, will be replaced by JS if image loaded -->
+        <i class="fas fa-user-circle" style="color: #5a524a;" id="profileIcon"></i>
+        <img id="profileImage" src="" alt="profile" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="banner-title">
+        <h1>Kandeep M</h1>
+        <div class="subhead"><i class="fas fa-briefcase" style="margin-right: 8px;"></i> Scrum Master · Agile Coach  · Business Analyst · Automation Developer </div>
+      </div>
+    </div>
+    <div class="banner-tag">
+      <i class="fas fa-chevron-circle-right" style="margin-right: 8px;"></i> IT Consulting
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT GRID -->
+  <div class="content-grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
+
+      <!-- SKILLS -->
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-cog"></i> Skills
+        </div>
+        <div class="skill-list">
+        <span class="skill-item"><i class="fas fa-sync-alt"></i> Agile Methodologies</span>
+        <span class="skill-item"><i class="fas fa-users-cog"></i> Agile Coaching</span>
+        <span class="skill-item"><i class="fas fa-people-arrows"></i> Scrum Events Facilitation</span>
+        <span class="skill-item"><i class="fas fa-tasks"></i> Agile Project Management</span>
+        <span class="skill-item"><i class="fas fa-database"></i> SQL / NoSQL</span>
+        <span class="skill-item"><i class="fas fa-vial"></i> Azure DevOps Test Plan</span>
+        <span class="skill-item"><i class="fas fa-code-branch"></i> Azure DevOps Pipeline</span>
+        <span class="skill-item"><i class="fas fa-chart-line"></i> Continuous Improvement</span>
+        <span class="skill-item"><i class="fas fa-play-circle"></i> Playwright</span>
+        <span class="skill-item"><i class="fab fa-js"></i> JavaScript</span>
+        <span class="skill-item"><i class="fab fa-java"></i> Java</span>
+        <span class="skill-item"><i class="fab fa-python"></i> Python</span>
+        <span class="skill-item"><i class="fab fa-css3-alt"></i> CSS</span>
+        <span class="skill-item"><i class="fab fa-html5"></i> HTML</span>
+        <span class="skill-item"><i class="fas fa-chart-pie"></i> Business Analysis</span>
+        <span class="skill-item"><i class="fas fa-mouse-pointer"></i> Manual Testing</span>
+        <span class="skill-item"><i class="fas fa-robot"></i> Automation Testing</span>
+
+
+        </div>
+      </div>
+
+      <!-- EDUCATION / CERTIFICATIONS -->
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-certificate"></i> Credentials
+        </div>
+
+        <div style="font-size:0.85rem; color:#5f5549; margin-top: 0.2rem;">
+          <i class="fas fa-graduation-cap" style="margin-right: 8px;"></i> Computer Programming 
+        </div>
+        <div style="font-size:0.85rem; color:#5f5549; margin-top: 0.2rem;">
+          <i class="fas fa-certificate" style="margin-right: 8px;"></i> Professional Scrum Master™ II (PSM II) 
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-col">
+
+      <!-- SERVICES -->
+      <div class="section">
+        <div class="section-title">
+          <i class="fas fa-handshake"></i> Services
+        </div>
+        <div class="service-grid">
+          <span class="service-item"><i class="fas fa-chart-line"></i> Agile Coaching</span>
+          <span class="service-item"><i class="fas fa-cloud-upload-alt"></i> Scrum Events Facilitation </span>
+          <span class="service-item"><i class="fas fa-lock"></i> Scrum Team Coaching</span>
+          <span class="service-item"><i class="fas fa-code-branch"></i> Scrum Process Improvement</span>
+          <span class="service-item"><i class="fas fa-draw-polygon"></i> agile Transformation Support</span>
+          <span class="service-item"><i class="fas fa-user-cog"></i> Business Process Analysis</span>
+          <span class="service-item"><i class="fas fa-robot"></i> Product backlog Refinement</span>
+          <span class="service-item"><i class="fas fa-robot"></i> Test Strategy & Planning</span>
+          <span class="service-item"><i class="fas fa-robot"></i> Playwright Test Automation</span>
+          <span class="service-item"><i class="fas fa-robot"></i> Web Application Development</span>
+          <span class="service-item"><i class="fas fa-robot"></i> CI/CD Autoamtion Support</span>
+          <span class="service-item"><i class="fas fa-robot"></i> Automation Pipeline Setup</span>
+          <span class="service-item"><i class="fas fa-robot"></i> Manual Testing</span>
+          <span class="service-item"><i class="fas fa-sync-alt"></i> Quality Assurance Improvement</span>
+        </div>
+
+      </div>
+
+        <!-- CLIENTS -->
+        <div class="section">
+        <div class="section-title">
+            <i class="fas fa-users"></i>Past Clients
+        </div>
+        <div class="client-list">
+            <div class="client-entry">
+            <span class="client-name"> Canadian Food Inspection Agency (CFIA)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Farm Credit Canada (FCC)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Privacy Analytics (IQVIA)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Employment and Social Development Canada (ESDC)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Export Development Canada (EDC)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Environment and Climate Change Canada (ECCC)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Shared Services Canada (SSC)</span>
+            </div>
+            <div class="client-entry">
+            <span class="client-name"> Innovapost</span>
+            </div>
+        </div>
+        <div style="margin-top: 0.8rem; font-size:0.8rem; color:#7b6e60; letter-spacing: 0.3px; border-top: 1px solid #e4dcd2; padding-top: 0.7rem;">
+          <i class="fas fa-handshake" style="margin-right: 6px;"></i> 10+ clients · across industries
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer – subtle japanese signature -->
+  <div class="card-footer">
+    <span></i> © 2026</span>
+
+    <span class="jp-signature">⛩️ Toronto · Canada </span>
+  </div>
+
+</div>
+<!-- end profile-card -->
+
+<script>
+  (function() {
+    // Enable profile picture upload via click on the profile pic
+    const profileContainer = document.getElementById('profilePicContainer');
+    const profileIcon = document.getElementById('profileIcon');
+    const profileImg = document.getElementById('profileImage');
+
+    // Create hidden file input
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+
+    profileContainer.addEventListener('click', function(e) {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          profileIcon.style.display = 'none';
+          profileImg.style.display = 'block';
+          profileImg.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Also allow banner upload via a hidden input – add a small banner upload button
+    const banner = document.querySelector('.banner');
+    const bannerFileInput = document.createElement('input');
+    bannerFileInput.type = 'file';
+    bannerFileInput.accept = 'image/*';
+    bannerFileInput.style.display = 'none';
+    document.body.appendChild(bannerFileInput);
+    
+    bannerFileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          // Change banner background to image
+          banner.style.backgroundImage = `url(${ev.target.result})`;
+          banner.style.backgroundSize = 'cover';
+          banner.style.backgroundPosition = 'center';
+          // Remove the gradient and darken overlay for readability
+          banner.style.backgroundImage = `linear-gradient(rgba(242, 237, 230, 0.85), rgba(232, 225, 216, 0.85)), url(${ev.target.result})`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // add a small note: double-click banner to remove custom bg (reset)
+    banner.addEventListener('dblclick', function() {
+      banner.style.backgroundImage = 'linear-gradient(145deg, #f2ede6 0%, #e8e1d8 100%)';
+      banner.style.backgroundSize = 'auto';
+    });
+
+  })();
+</script>
+
+</body>
+</html>
